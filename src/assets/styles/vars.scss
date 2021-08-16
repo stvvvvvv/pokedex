@@ -1,3 +1,26 @@
-.pokemon-card__titile{
-    color: red;
+//========== <ПЕРЕМЕННЫЕ> ==========
+$primary-blue: rgb(56, 93, 173);
+$primary-yellow: rgb(254, 206, 2);
+$primary-black: rgb(1, 1, 1);
+$primary-gray: rgb(131, 131, 131);
+$secondary-gray: rgb(96, 96, 96);
+//========== </ ПЕРЕМЕННЫЕ> ==========
+
+
+
+//========== <МИКСИНЫ> ==========
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  } @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 }
+//========== </ МИКСИНЫ> ==========
