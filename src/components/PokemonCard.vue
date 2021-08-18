@@ -20,19 +20,25 @@
                     <img class="pokemon-card__types-img" src="../assets/images/icons/poison.svg" alt="poison">
                 </div>
             </div>
-            <button class="pokemon-card__btn">View more</button>
+            <button
+            class="pokemon-card__btn"
+            @click="setPokemonUrl(pokemon_data.url)"
+            >
+              View more
+            </button>
         </div>
     </div>
-    <PokemonPage
-    />
 </template>
 
 <script>
-import PokemonPage from './PokemonPage'
 
 export default {
   name: 'PokemonCard',
-  components: { PokemonPage },
+  data () {
+    return {
+      imageURL: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/'
+    }
+  },
   props: {
     pokemon_data: {
       type: Object,
@@ -47,9 +53,8 @@ export default {
         .filter(function (part) { return !!part }).pop()
       return pokemonId
     },
-    async getPokemonInfo (pokemonId) {
-      this.pokemonsInfo = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
-        .then(response => response.json())
+    setPokemonUrl (url) {
+      this.$emit('setPokemonUrl', url)
     }
   }
 }

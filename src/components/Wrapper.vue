@@ -3,11 +3,18 @@
       <Header />
       <Search />
       <Filter />
+      <PokemonPage
+       v-if="viewMore"
+       :pokemonUrl="pokemonUrl"
+       @closeViewMore="closeViewMore"
+      />
       <div class="wrapper__container">
         <PokemonCard
         v-for="pokemon in pokemons.results"
         :key="pokemon.name"
         :pokemon_data="pokemon"
+        :imageURL="imageURL"
+        @setPokemonUrl="setPokemonUrl"
         />
       </div>
   </div>
@@ -18,10 +25,11 @@ import Header from './Header'
 import Search from './Search'
 import Filter from './Filter'
 import PokemonCard from './PokemonCard'
+import PokemonPage from './PokemonPage'
 
 export default {
   name: 'Wrapper',
-  components: { Header, Search, Filter, PokemonCard },
+  components: { Header, Search, Filter, PokemonCard, PokemonPage },
   data () {
     return {
       imageURL: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/',
@@ -30,7 +38,9 @@ export default {
         default () {
           return {}
         }
-      }
+      },
+      pokemonUrl: '',
+      viewMore: true
     }
   },
   props: {
@@ -38,7 +48,22 @@ export default {
   methods: {
     async getPokemons () {
       this.pokemons = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
+        .then(resp => resp.json())
+    },
+    async getPokemon () {
+      this.pokemons = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
         .then(response => response.json())
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    setPokemonUrl (url) {
+      this.pokemonUrl = url
+      this.viewMore = true
+    },
+    closeViewMore () {
+      this.pokemonUrl = ''
+      this.viewMore = false
     }
   },
   created () {
