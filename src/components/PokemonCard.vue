@@ -5,7 +5,7 @@
                 <img class="pokemon-card__img" alt="Pokemon">
             </div>
             <div class="pokemon-card__info">
-                <span class="pokemon-card__id">ID </span>
+                <span class="pokemon-card__id">ID {{getPokemonID()}} </span>
                 <h2 class="pokemon-card__title">{{ pokemon_data.name }}</h2>
                 <div class="pokemon-card__stats">
                     <p class="pokemon-card__stats-height">Height: <span>17</span> </p>
@@ -39,6 +39,17 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  methods: {
+    getPokemonID (pokemonId) {
+      pokemonId = this.pokemon_data.url.split('/')
+        .filter(function (part) { return !!part }).pop()
+      return pokemonId
+    },
+    async getPokemonInfo (pokemonId) {
+      this.pokemonsInfo = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
+        .then(response => response.json())
     }
   }
 }
