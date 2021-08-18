@@ -7,6 +7,7 @@
         <PokemonCard
         v-for="pokemon in pokemons.results"
         :key="pokemon.name"
+        :pokemon_data="pokemon"
         />
       </div>
   </div>
@@ -38,7 +39,6 @@ export default {
     async getPokemons () {
       this.pokemons = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
         .then(response => response.json())
-      console.log(this.pokemons)
     }
   },
   created () {

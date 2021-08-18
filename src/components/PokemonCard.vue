@@ -6,7 +6,7 @@
             </div>
             <div class="pokemon-card__info">
                 <span class="pokemon-card__id">ID </span>
-                <h2 class="pokemon-card__title"></h2>
+                <h2 class="pokemon-card__title">{{ pokemon_data.name }}</h2>
                 <div class="pokemon-card__stats">
                     <p class="pokemon-card__stats-height">Height: <span>17</span> </p>
                     <p class="pokemon-card__stats-weight">Weight: <span>22</span></p>
