@@ -2,7 +2,7 @@
     <div class="pokemon-card__wrapper">
         <div class="pokemon-card__container">
             <div class="pokemon-card__img-container">
-                <img class="pokemon-card__img" alt="Pokemon">
+                <img class="pokemon-card__img" :src="imageURL + getPokemonID() + '.svg'" alt="Pokemon">
             </div>
             <div class="pokemon-card__info">
                 <span class="pokemon-card__id">ID {{getPokemonID()}} </span>
