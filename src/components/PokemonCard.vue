@@ -33,15 +33,13 @@ import PokemonPage from './PokemonPage'
 export default {
   name: 'PokemonCard',
   components: { PokemonPage },
-  data () {
-    return {
-      imageURL: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/',
-      pokemonId: ''
-    }
-  },
   props: {
-  },
-  methods: {
+    pokemon_data: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
   }
 }
 </script>

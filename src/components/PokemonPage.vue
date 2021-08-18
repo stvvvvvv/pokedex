@@ -13,13 +13,6 @@ export default {
   },
   data () {
     return {
-      pokemonInfo: {
-        type: Object,
-        default () {
-          return {}
-        }
-      },
-      pokemonUrl: 'https://pokeapi.co/api/v2/pokemon/'
     }
   },
   methods: {
