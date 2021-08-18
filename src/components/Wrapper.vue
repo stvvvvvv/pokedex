@@ -49,10 +49,6 @@ export default {
     async getPokemons () {
       this.pokemons = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
         .then(resp => resp.json())
-    },
-    async getPokemon () {
-      this.pokemons = await fetch(`${this.$store.getters.GET_POKEMONRUL}`)
-        .then(response => response.json())
         .catch((error) => {
           console.log(error)
         })
