@@ -2,11 +2,11 @@
     <div class="pokemon-card__wrapper">
         <div class="pokemon-card__container">
             <div class="pokemon-card__img-container">
-                <img class="pokemon-card__img" :src="imageURL + getPokemonID() + '.svg'" alt="Pokemon">
+                <img class="pokemon-card__img" alt="Pokemon">
             </div>
             <div class="pokemon-card__info">
-                <span class="pokemon-card__id">ID {{ getPokemonID() }}</span>
-                <h2 class="pokemon-card__title">{{ pokemon_data.name }}</h2>
+                <span class="pokemon-card__id">ID </span>
+                <h2 class="pokemon-card__title"></h2>
                 <div class="pokemon-card__stats">
                     <p class="pokemon-card__stats-height">Height: <span>17</span> </p>
                     <p class="pokemon-card__stats-weight">Weight: <span>22</span></p>
@@ -24,7 +24,6 @@
         </div>
     </div>
     <PokemonPage
-    :pokemon_data="pokemon_data"
     />
 </template>
 
@@ -41,19 +40,8 @@ export default {
     }
   },
   props: {
-    pokemon_data: {
-      type: Object,
-      default () {
-        return {}
-      }
-    }
   },
   methods: {
-    getPokemonID (pokemonId) {
-      pokemonId = this.pokemon_data.url.split('/')
-        .filter(function (part) { return !!part }).pop()
-      return pokemonId
-    }
   }
 }
 </script>
