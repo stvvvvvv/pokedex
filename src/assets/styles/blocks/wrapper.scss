@@ -1,15 +1,4 @@
 .wrapper{
     min-height: 100vh;
     background: linear-gradient(180deg, rgb(56, 93, 173) 30%, rgb(33, 39, 87));
-    &__container{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 1170px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 16px;
-        padding-right: 16px;
-        
-    }
 }

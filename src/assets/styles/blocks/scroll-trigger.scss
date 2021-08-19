@@ -1,0 +1,13 @@
+.scroll-trigger{
+    width: 350px;
+    margin-left: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__icon{
+        color: #fff;
+        font-size: 10rem;
+    }
+}
