@@ -6,7 +6,6 @@
       <div class="wrapper__container">
         <PokemonList
         :apiUrl="apiUrl"
-        @setPokemonUrl="setPokemonUrl"
         />
       </div>
   </div>
@@ -31,14 +30,6 @@ export default {
   props: {
   },
   methods: {
-    setPokemonUrl (url) {
-      this.pokemonUrl = url
-      this.viewMore = true
-    },
-    closeViewMore () {
-      this.pokemonUrl = ''
-      this.viewMore = false
-    }
   },
   mounted () {
   }

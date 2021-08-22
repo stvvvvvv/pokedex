@@ -3,13 +3,10 @@
         <div class="pokemon-list__container">
         <PokemonCard
         v-for="(pokemon, index) in pokemons"
-        :key="'poke'+index"
+        :key="'pokemon'+index"
         :pokemon_data="pokemon"
+        :imageUrl="imageUrl"
         @setPokemonUrl="setPokemonUrl"
-        />
-        <PokemonPage
-        :pokemonUrl="pokemonUrl"
-        @closeViewMore="closeViewMore"
         />
         <div
         class="scroll-trigger"
@@ -19,6 +16,12 @@
           <i class="fas fa-spinner fa-spin scroll-trigger__icon"></i>
         </div>
         </div>
+        <PokemonPage
+        v-if="showPage"
+        :pokemonUrl="pokemonUrl"
+        :imageUrl="imageUrl"
+        @closePage="closePage"
+        />
     </div>
 </template>
 
@@ -29,14 +32,17 @@ import PokemonPage from './PokemonPage'
 export default {
   name: 'PokemonList',
   props: [
-    'pokemonUrl',
     'apiUrl'
   ],
   data () {
     return {
+      imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/',
       pokemons: [],
+      pokemonStats: {},
       nextUrl: '',
-      currentUrl: ''
+      currentUrl: '',
+      pokemonUrl: '',
+      showPage: false
     }
   },
   components: { PokemonCard, PokemonPage },
@@ -61,6 +67,15 @@ export default {
           console.log(error)
         })
     },
+    // async getPokemonStats () {
+    //   try {
+    //     const resp = await fetch(this.pokemon.url)
+    //     const results = await resp.json()
+    //     this.pokemonStats.push(results)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // },
     scrollTrigger () {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -74,11 +89,20 @@ export default {
     next () {
       this.currentUrl = this.nextUrl
       this.getPokemons()
+    },
+    setPokemonUrl (url) {
+      this.pokemonUrl = url
+      this.showPage = true
+    },
+    closePage () {
+      this.pokemonUrl = ''
+      this.showPage = false
     }
   },
   created () {
     this.currentUrl = this.apiUrl
     this.getPokemons()
+    // this.getPokemonStats()
   },
   mounted () {
     this.scrollTrigger()

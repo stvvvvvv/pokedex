@@ -15,7 +15,6 @@
         color: #fff;
         border-radius: 30px;
         cursor: pointer;
-        
         border: none;
         outline: none;
         z-index: 2;
@@ -119,5 +118,19 @@
             inset 0 20px 20px -5px rgba(21, 21, 21, 0.57), 
             inset 0 -20px 20px -5px rgba(21, 21, 21, 0.57);
         transition: ease all 0.3s
+    }
+}
+
+@media (max-width: 767px) {
+    .filter{
+        &__btn{
+            width: 60%;
+            &::before{
+                width: 20%;
+            }
+            &::after{
+                width: 20%;
+            }
+        }
     }
 }
