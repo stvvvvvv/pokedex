@@ -56,3 +56,14 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .search{
+        &__input{
+            width: 80%;
+        }
+        &__btn{
+            width: 10%;
+        }
+    }
+}

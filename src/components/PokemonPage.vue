@@ -2,12 +2,18 @@
     <div class="pokemon-page__wrapper">
         <div class="pokemon-page__container">
           <div class="pokemon-page__img-container">
-            <img class="pokemon-page__img" src="../assets/images/pokemon/1.png" alt="Pokemon">
+            <img class="pokemon-page__img" :src="imageUrl + pokemon.id + '.svg'" alt="Pokemon">
           </div>
           <div class="pokemon-page__stats">
-            <h2 class="pokemon-page__title">Title</h2>
-            <p class="pokemon-page__stats-height">Height: <span>17</span> </p>
-            <p class="pokemon-page__stats-weight">Weight: <span>22</span></p>
+            <h2 class="pokemon-page__title">{{ pokemon.name }}</h2>
+            <p class="pokemon-page__stats-height">Height: <span>{{ pokemon.height }}</span> </p>
+            <p class="pokemon-page__stats-weight">Weight: <span>{{ pokemon.weight }}</span></p>
+            <button
+            class="pokemon-page__btn"
+            @click="closePage"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
     </div>
@@ -16,20 +22,10 @@
 <script>
 export default {
   name: 'PokemonPage',
-  props: {
-    pokemonUrl: {
-      type: String,
-      default () {
-        return ''
-      }
-    },
-    imageURL: {
-      type: String,
-      default () {
-        return ''
-      }
-    }
-  },
+  props: [
+    'pokemonUrl',
+    'imageUrl'
+  ],
   data () {
     return {
       pokemon: {},
@@ -42,7 +38,7 @@ export default {
       fetch(req)
         .then((resp) => {
           if (resp.status === 200) {
-            return resp.json
+            return resp.json()
           }
         })
         .then((data) => {
@@ -52,6 +48,9 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    closePage () {
+      this.$emit('closePage')
     }
   },
   created () {
