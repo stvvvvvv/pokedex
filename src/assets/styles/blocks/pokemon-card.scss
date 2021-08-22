@@ -69,17 +69,19 @@
         }
     }
     &__types{
-        width: 100%;
         display: flex;
-        justify-content: center;
         &-container{
-            &:first-child{
-                margin-right: 3rem;
-            }
+            
         }
         &-img{
             width: 42px;
             height: auto;
+            &:last-child{
+                margin-left: 2rem;
+            }
+            &:first-child{
+                margin-left: -1rem;
+            }
         }
     }
     &__btn{
