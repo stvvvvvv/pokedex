@@ -45,7 +45,7 @@ export default {
           return {}
         }
       },
-      pokemonTypeImgUrl: 'https://raw.githubusercontent.com/stvvvvvv/pokedex/bd0e1bf88a54b85c5439861883ccf33634a3287c/src/assets/images/icons/'
+      pokemonTypeImgUrl: 'https://raw.githubusercontent.com/stvvvvvv/pokedex/129bdb1e3a55fa9b56d654c4260e5c1f090c212b/src/assets/images/icons/'
     }
   },
   components: { },
