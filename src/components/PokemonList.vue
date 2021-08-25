@@ -18,7 +18,7 @@
         </div>
         <PokemonPage
         v-if="showPage"
-        :pokemonUrl="pokemonUrl"
+        :pokemonStats="pokemonStats"
         :imageUrl="imageUrl"
         @closePage="closePage"
         />
@@ -41,7 +41,6 @@ export default {
       pokemonStats: {},
       nextUrl: '',
       currentUrl: '',
-      pokemonUrl: '',
       showPage: false
     }
   },
@@ -67,15 +66,6 @@ export default {
           console.log(error)
         })
     },
-    // async getPokemonStats () {
-    //   try {
-    //     const resp = await fetch(this.pokemon.url)
-    //     const results = await resp.json()
-    //     this.pokemonStats.push(results)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // },
     scrollTrigger () {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -90,8 +80,8 @@ export default {
       this.currentUrl = this.nextUrl
       this.getPokemons()
     },
-    setPokemonUrl (url) {
-      this.pokemonUrl = url
+    setPokemonUrl (pokemonInfo) {
+      this.pokemonStats = pokemonInfo
       this.showPage = true
     },
     closePage () {
@@ -102,7 +92,6 @@ export default {
   created () {
     this.currentUrl = this.apiUrl
     this.getPokemons()
-    // this.getPokemonStats()
   },
   mounted () {
     this.scrollTrigger()
