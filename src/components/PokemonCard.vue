@@ -19,13 +19,13 @@
                     :src="pokemonTypeImgUrl + pokemonType.type.name + '.svg'"
                     alt="grass"
                     v-for="(pokemonType, index) in pokemonInfo.types"
-                    :key="'pokemontype'+index"
+                    :key="'pokemonType'+index"
                     />
                 </div>
             </div>
             <button
             class="pokemon-card__btn"
-            @click="setPokemonUrl(pokemon_data.url)"
+            @click="setPokemonUrl(pokemonInfo)"
             >
               View more
             </button>
@@ -95,4 +95,5 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>

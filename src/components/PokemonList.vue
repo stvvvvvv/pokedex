@@ -1,27 +1,29 @@
 <template>
     <div class="pokemon-list__wrapper">
         <div class="pokemon-list__container">
-        <PokemonCard
-        v-for="(pokemon, index) in pokemons"
-        :key="'pokemon'+index"
-        :pokemon_data="pokemon"
-        :imageUrl="imageUrl"
-        @setPokemonUrl="setPokemonUrl"
-        />
-        <div
-        class="scroll-trigger"
-        id="scrollTrigger"
-        ref="infinitescrolltrigger"
-        >
-          <i class="fas fa-spinner fa-spin scroll-trigger__icon"></i>
+          <PokemonCard
+          v-for="(pokemon, index) in pokemons"
+          :key="'pokemon'+index"
+          :pokemon_data="pokemon"
+          :imageUrl="imageUrl"
+          @setPokemonUrl="setPokemonUrl"
+          />
+          <div
+          class="scroll-trigger"
+          id="scrollTrigger"
+          ref="infinitescrolltrigger"
+          >
+            <i class="fas fa-spinner fa-spin scroll-trigger__icon"></i>
+          </div>
         </div>
-        </div>
-        <PokemonPage
-        v-if="showPage"
-        :pokemonUrl="pokemonUrl"
-        :imageUrl="imageUrl"
-        @closePage="closePage"
-        />
+        <transition name="fade">
+          <PokemonPage
+          v-if="showPage"
+          :pokemonStats="pokemonStats"
+          :imageUrl="imageUrl"
+          @closePage="closePage"
+          />
+        </transition>
     </div>
 </template>
 
@@ -41,7 +43,6 @@ export default {
       pokemonStats: {},
       nextUrl: '',
       currentUrl: '',
-      pokemonUrl: '',
       showPage: false
     }
   },
@@ -67,15 +68,6 @@ export default {
           console.log(error)
         })
     },
-    // async getPokemonStats () {
-    //   try {
-    //     const resp = await fetch(this.pokemon.url)
-    //     const results = await resp.json()
-    //     this.pokemonStats.push(results)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // },
     scrollTrigger () {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -90,8 +82,8 @@ export default {
       this.currentUrl = this.nextUrl
       this.getPokemons()
     },
-    setPokemonUrl (url) {
-      this.pokemonUrl = url
+    setPokemonUrl (pokemonInfo) {
+      this.pokemonStats = pokemonInfo
       this.showPage = true
     },
     closePage () {
@@ -102,7 +94,6 @@ export default {
   created () {
     this.currentUrl = this.apiUrl
     this.getPokemons()
-    // this.getPokemonStats()
   },
   mounted () {
     this.scrollTrigger()
@@ -110,5 +101,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="css">
+.fade-enter-from{
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
 </style>
