@@ -19,7 +19,7 @@
                     :src="pokemonTypeImgUrl + pokemonType.type.name + '.svg'"
                     alt="grass"
                     v-for="(pokemonType, index) in pokemonInfo.types"
-                    :key="'pokemontype'+index"
+                    :key="'pokemonType'+index"
                     />
                 </div>
             </div>
@@ -95,4 +95,5 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>
