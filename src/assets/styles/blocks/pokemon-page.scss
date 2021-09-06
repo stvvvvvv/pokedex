@@ -32,13 +32,23 @@
             box-shadow: 0px 4px 10px 5px rgba(1, 1, 1, 0.4);
         }
     }
-    &__title{
+    &__title{   
         &::first-letter{
             text-transform: uppercase;
         }
     }
     &__stats{
         // font-size: 2.4rem;
+    }
+    &__columns{
+        vertical-align:bottom;
+	    display:inline-block;
+        &__wrapper{
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+        }
     }
     &__base-stats{
         display: flex;
