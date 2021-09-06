@@ -21,11 +21,19 @@
         </button>
       </div>
       <div class="pokemon-page__base-stats__wrapper">
-         <div class="pokemon-page__base-stats">
+        <div class="pokemon-page__columns__wrapper">
+          <div
+          class="pokemon-page__columns"
+          :style="{ height: pokemonStat.base_stat * 3 + 'px', width: '50px', backgroundColor: '#111' }"
+          v-for="(pokemonStat, index) in pokemonStats.stats"
+          :key="index">
+          </div>
+        </div>
+        <div class="pokemon-page__base-stats">
           <p class="pokemon-page__base-stats__item"
           v-for="(pokemonStat, index) in pokemonStats.stats"
           :key="index">
-           {{pokemonStat.base_stat}}
+            {{pokemonStat.base_stat}}
           </p>
         </div>
         <div class="pokemon-page__stats-names">
